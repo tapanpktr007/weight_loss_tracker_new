@@ -10,7 +10,11 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from datetime import date, datetime
+from google.oauth2.service_account import Credentials
 
+creds_dict = st.secrets["gcp_service_account"]
+credentials = Credentials.from_service_account_info(creds_dict)
+gc = gspread.authorize(credentials)
 
 def local_css(file_name):
     with open(file_name) as f:
